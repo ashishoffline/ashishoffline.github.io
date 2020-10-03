@@ -1,7 +1,7 @@
 // Add your javascript here
 // Don't forget to add it into respective layouts where this js file is needed
 
-/* Ajax call for form submission*/
+/* Ajax call for form submission -- Start*/
 
 window.addEventListener("DOMContentLoaded", function() {
 
@@ -47,6 +47,8 @@ function ajax(method, url, data, success, error) {
   };
   xhr.send(data);
 }
+
+/* Ajax call for form submission -- End*/
 
 $(document).ready(function() {
   AOS.init( {
