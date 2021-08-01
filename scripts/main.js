@@ -2,6 +2,19 @@
 // Don't forget to add it into respective layouts where this js file is needed
 
 /* Ajax call for form submission -- Start*/
+function calculateAge(dateofBirth){
+  const dob = new Date(dateofBirth);
+  const today = new Date();
+  const age = today.getFullYear() - dob.getFullYear();
+  const month = today.getMonth() - dob.getMonth();
+  if(month < 0 || (month === 0 && today.getDate() < dob.getDate())){
+    age -= 1;
+  }
+  return age;
+}
+
+const age = calculateAge("06/05/1995");
+document.getElementById("age").innerHTML = age;
 
 window.addEventListener("DOMContentLoaded", function() {
 
