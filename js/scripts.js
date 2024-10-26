@@ -66,7 +66,7 @@ window.addEventListener('DOMContentLoaded', event =>
     
                         const formData = {
                             name: document.getElementById("name").value,
-                            email: document.getElementById("email").value,
+                            replyTo: document.getElementById("replyTo").value,
                             subject: document.getElementById("subject").value,
                             message: document.getElementById("message").value,
                             recaptchaToken: token
