@@ -12718,10 +12718,6 @@ p.lead {
   }
 }
 
-.dev-icons {
-  font-size: 3rem;
-}
-
 section.resume-section {
   display: flex;
   align-items: center;
@@ -12751,8 +12747,24 @@ section.resume-section .resume-section-content {
   }
 }
 
+/* Skill/Dev Icons - Start */
+.dev-icons {
+  font-size: 3rem;
+}
+
+.dev-icons i,
+.devicon-svg {
+  height: 3rem;
+  width: auto;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Skill/Dev Icons - End */
+
 /* Social Icons - Start */
-.social-icons .social-icon {
+/* Social Icons style before I have modified to use th Deviocns instead of font awesome */
+/* .social-icons .social-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -12771,7 +12783,50 @@ section.resume-section .resume-section-content {
 
 .social-icons .social-icon:hover {
   background-color: #bd5d38;
+} */
+
+/* Social Icons Container */
+.social-icons {
+  display: flex;
+  /* Use flexbox to manage layout */
+  gap: 1rem;
+  /* Reduce spacing between icons */
 }
+
+/* Individual Social Icon Link */
+.social-icons .social-icon {
+  display: inline-flex;
+  /* Inline-flex to center icon inside link */
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  /* Adjusted height for more consistent sizing */
+  width: 3rem;
+  /* Adjusted width for more consistent sizing */
+  overflow: hidden;
+  /* Prevent overflow from icon */
+  transition: transform 0.3s ease;
+  /* Smooth scaling effect */
+  color: inherit;
+  /* Keep the natural colors of the icons */
+}
+
+/* SVG Icon Styling */
+.social-icons .social-icon img.social-svg {
+  height: 2rem;
+  /* Explicit height for icon */
+  width: 2rem;
+  /* Explicit width for icon */
+  display: block;
+  /* Prevent extra inline spacing */
+}
+
+/* Hover Effect */
+.social-icons .social-icon:hover {
+  transform: scale(1.1);
+  /* Slightly enlarge the container on hover */
+}
+
 
 /* Social Icons - End */
 
