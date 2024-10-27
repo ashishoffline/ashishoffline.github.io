@@ -16,8 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-    <script
-        src="https://www.google.com/recaptcha/enterprise.js?render=6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-"></script>
 </head>
 
 <body id="page-top">
@@ -60,10 +59,12 @@
                     high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to
                     further the overall value proposition.</p>
                 <div class="social-icons">
-                    <a class="social-icon" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="social-icon" href="#!"><i class="fab fa-github"></i></a>
-                    <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon" href="https://linkedin.ashishjha.dev" target="_blank"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a class="social-icon" href="https://github.ashishjha.dev" target="_blank"><i
+                            class="fab fa-github"></i></a>
+                    <a class="social-icon" href="https://twitter.ashishjha.dev" target="_blank"><i
+                            class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </section>
@@ -244,35 +245,60 @@
         </section>
         <hr class="m-0" />
         <!-- Contact Section -->
-        <!-- Contact Section -->
         <section class="resume-section" id="contact">
             <div class="resume-section-content">
                 <h2 class="mb-5">Contact</h2>
-                <form id="contactForm" class="needs-validation" novalidate>
-                    <div class="form-group mb-3">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                        <div class="invalid-feedback">Please provide your name.</div>
+                <div class="container">
+                    <div class="row">
+                        <!-- Left Column: Contact Form -->
+                        <div class="col-md-6">
+                            <form id="contactForm" class="needs-validation" novalidate>
+                                <div class="form-group mb-3">
+                                    <label for="name">Name:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <div class="invalid-feedback">Please provide your name.</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="replyTo">Email:</label>
+                                    <input type="email" class="form-control" id="replyTo" name="replyTo" required>
+                                    <div class="invalid-feedback">Please provide a valid email address.</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="subject">Subject:</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" required>
+                                    <div class="invalid-feedback">Please provide a subject.</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="message">Message:</label>
+                                    <textarea class="form-control" id="message" name="message" rows="4"
+                                        required></textarea>
+                                    <div class="invalid-feedback">Please enter a message.</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send</button>
+                                <div id="formErrorMessage" class="mt-3 alert alert-danger d-none" role="alert"></div>
+                            </form>
+                        </div>
+
+                        <!-- Right Column: Other Contact Methods -->
+                        <div class="col-md-6">
+                            <div class="contact-info p-4">
+                                <h4>Other Ways to Contact Me</h4>
+                                <p><strong>Address:</strong> Chennai, Tamil Nadu, India</p>
+                                <p><strong>Email:</strong> <a
+                                        href="mailto:youremail@example.com">youremail@example.com</a></p>
+                                <p><strong>Follow Me:</strong></p>
+                                <div class="social-icons">
+                                    <a class="social-icon" href="https://linkedin.ashishjha.dev" target="_blank"><i
+                                            class="fab fa-linkedin-in"></i></a>
+                                    <a class="social-icon" href="https://github.ashishjha.dev" target="_blank"><i
+                                            class="fab fa-github"></i></a>
+                                    <a class="social-icon" href="https://twitter.ashishjha.dev" target="_blank"><i
+                                            class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="replyTo" name="replyTo" required>
-                        <div class="invalid-feedback">Please provide a valid email address.</div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="subject">Subject:</label>
-                        <input type="text" class="form-control" id="subject" name="subject" required>
-                        <div class="invalid-feedback">Please provide a subject.</div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="message">Message:</label>
-                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                        <div class="invalid-feedback">Please enter a message.</div>
-                    </div>
-                    <!-- <div class="g-recaptcha mb-3" data-sitekey="6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-"></div> -->
-                    <button type="submit" class="btn btn-primary">Send</button>
-                    <div id="formErrorMessage" class="mt-3 alert alert-danger d-none" role="alert"></div>
-                </form>
+                </div>
             </div>
         </section>
     </div>

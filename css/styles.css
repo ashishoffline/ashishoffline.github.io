@@ -12718,27 +12718,6 @@ p.lead {
   }
 }
 
-.social-icons .social-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 3.5rem;
-  width: 3.5rem;
-  background-color: #495057;
-  color: #fff;
-  border-radius: 100%;
-  font-size: 1.5rem;
-  margin-right: 1.5rem;
-}
-
-.social-icons .social-icon:last-child {
-  margin-right: 0;
-}
-
-.social-icons .social-icon:hover {
-  background-color: #bd5d38;
-}
-
 .dev-icons {
   font-size: 3rem;
 }
@@ -12772,24 +12751,52 @@ section.resume-section .resume-section-content {
   }
 }
 
-/* abc */
+/* Social Icons - Start */
+.social-icons .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: #495057;
+  color: #fff;
+  border-radius: 100%;
+  font-size: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.social-icons .social-icon:last-child {
+  margin-right: 0;
+}
+
+.social-icons .social-icon:hover {
+  background-color: #bd5d38;
+}
+
+/* Social Icons - End */
+
+/* Contact Section - Start */
+
+/* Styling for the contact info section to match overall theme */
+.contact-info {
+  background-color: var(--bs-gray-100);
+  border-radius: var(--bs-border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 #contactForm .form-group {
   margin-bottom: 1rem;
 }
 
 #contactForm .btn-primary {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
 }
 
 #contactForm .btn-primary:hover {
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
+  background-color: #974a2d;
+  border-color: #974a2d;
 }
 
-.g-recaptcha {
-  display: block;
-  margin: 1rem auto;
-  text-align: center;
-  /* Center align in case of misalignment issues */
-}
+/* Contact Section - End */
