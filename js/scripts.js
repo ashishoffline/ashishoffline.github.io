@@ -86,6 +86,13 @@ window.addEventListener('DOMContentLoaded', event =>
                                 throw new Error("Something went wrong. Please try again later.");
                             }
                         })
+                        .catch(error =>
+                        {
+                            // Show error message in the form UI
+                            formErrorMessage.textContent = error.message;
+                            formErrorMessage.classList.remove('d-none', 'alert-success');
+                            formErrorMessage.classList.add('alert', 'alert-danger');
+                        });
                 })
                     .catch(error =>
                     {
