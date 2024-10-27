@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', event =>
 {
-
     // Activate Bootstrap scrollspy on the main nav element
     const sideNav = document.body.querySelector('#sideNav');
     if (sideNav)
@@ -26,14 +25,8 @@ window.addEventListener('DOMContentLoaded', event =>
             }
         });
     });
-});
 
-// 6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-
-// https://ashishjha-dev.azurewebsites.net/api/ContactMeEmail?code=jRH9RI56M0kHjxm05jVoX7DsqML6JRgEShFEpSKyAkJ_AzFuwGmx1g==
-
-
-document.addEventListener("DOMContentLoaded", function ()
-{
+    // Contact From submission
     const contactForm = document.getElementById("contactForm");
     const formErrorMessage = document.getElementById("formErrorMessage");
 
@@ -55,13 +48,12 @@ document.addEventListener("DOMContentLoaded", function ()
                 return;  // Do not proceed if form is invalid
             }
 
-            // If form is valid, execute reCAPTCHA
-            grecaptcha.ready(async function ()
+            // Execute reCAPTCHA v3 to get the token
+            grecaptcha.ready(function ()
             {
-                try
+                grecaptcha.execute('6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-', { action: 'submit' }).then(function (token)
                 {
-                    const token = await grecaptcha.execute('6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-', { action: 'submit' });
-
+                    // Append token to the form data
                     const formData = {
                         name: document.getElementById("name").value,
                         replyTo: document.getElementById("replyTo").value,
@@ -70,34 +62,38 @@ document.addEventListener("DOMContentLoaded", function ()
                         recaptchaToken: token
                     };
 
-                    // Send the data to your server
-                    const response = await fetch("https://ashishjha-dev.azurewebsites.net/api/ContactMeEmail?code=jRH9RI56M0kHjxm05jVoX7DsqML6JRgEShFEpSKyAkJ_AzFuwGmx1g==", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(formData)
+                    // Submit the form data
+                    fetch("https://ashishjha-dev.azurewebsites.net/api/ContactMeEmail?code=jRH9RI56M0kHjxm05jVoX7DsqML6JRgEShFEpSKyAkJ_AzFuwGmx1g==",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(formData)
+                        })
+                        .then(response =>
+                        {
+                            if (response.ok)
+                            {
+                                // Show success message
+                                formErrorMessage.textContent = "Thanks! Your message has been sent successfully.";
+                                formErrorMessage.classList.remove('d-none', 'alert-danger');
+                                formErrorMessage.classList.add('alert', 'alert-success');
+                                contactForm.reset();
+                                contactForm.classList.remove('was-validated');
+                            } else
+                            {
+                                throw new Error("Something went wrong. Please try again later.");
+                            }
+                        })
+                })
+                    .catch(error =>
+                    {
+                        // Show error message in the form UI
+                        formErrorMessage.textContent = error.message;
+                        formErrorMessage.classList.remove('d-none', 'alert-success');
+                        formErrorMessage.classList.add('alert', 'alert-danger');
                     });
-
-                    if (response.ok)
-                    {
-                        formErrorMessage.textContent = "Thanks! Your message has been sent successfully.";
-                        formErrorMessage.classList.remove('d-none', 'alert-danger');
-                        formErrorMessage.classList.add('alert', 'alert-success');
-                        contactForm.reset();
-                        contactForm.classList.remove('was-validated');
-                    } else
-                    {
-                        throw new Error("Something went wrong. Please try again later.");
-                    }
-
-                } catch (error)
-                {
-                    // Display the error message in the form UI
-                    formErrorMessage.textContent = error.message;
-                    formErrorMessage.classList.remove('d-none', 'alert-success');
-                    formErrorMessage.classList.add('alert', 'alert-danger');
-                }
             });
         });
     }
