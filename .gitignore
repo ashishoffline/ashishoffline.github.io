@@ -1,6 +1,13 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 /.vs/slnx.sqlite
 /.vs/ashishoffline.github.io/config/applicationhost.config
+
+# Node & Build artifacts
+node_modules/
+dist/
+dist-ssr/
+*.local
+.pnpm-debug.log*
