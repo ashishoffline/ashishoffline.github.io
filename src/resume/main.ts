@@ -1,18 +1,21 @@
-import '../shared/base';
 import { ScrollSpy } from 'bootstrap';
 import { ContactFormData } from './types';
 import { renderResume } from './render';
+import { initTheme } from '../shared/theme';
 
 declare const grecaptcha: {
     ready: (callback: () => void) => void;
     execute: (siteKey: string, options: { action: string }) => Promise<string>;
 };
 
-window.addEventListener('DOMContentLoaded', () => {
-    // 0. Render resume content dynamically from strongly-typed data
+function init(): void {
+    // 0. Initialize Light/Dark theme manager
+    initTheme();
+
+    // 1. Render resume content dynamically from strongly-typed data
     renderResume();
 
-    // 1. Activate Bootstrap scrollspy on the main nav element
+    // 2. Activate Bootstrap scrollspy on the main nav element
     const sideNav = document.body.querySelector<HTMLElement>('#sideNav');
     if (sideNav) {
         new ScrollSpy(document.body, {
@@ -21,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Collapse responsive navbar when a nav-item is clicked on mobile
+    // 3. Collapse responsive navbar when a nav-item is clicked on mobile
     const navbarToggler = document.body.querySelector<HTMLElement>('.navbar-toggler');
     const responsiveNavItems = Array.from(
         document.querySelectorAll<HTMLElement>('#navbarResponsive .nav-link')
@@ -35,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Contact Form Submission
+    // 4. Contact Form Submission
     const contactForm = document.getElementById('contactForm') as HTMLFormElement | null;
     const formErrorMessage = document.getElementById('formErrorMessage');
 
@@ -104,4 +107,10 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}

@@ -1,4 +1,7 @@
-import '../shared/base';
+import { initTheme } from '../shared/theme';
+
+// Initialize Light/Dark theme manager
+initTheme();
 
 // Credit Card Rewards Optimizer Entry Point
 console.log('Credit Card Rewards Optimizer initialized');

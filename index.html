@@ -9,15 +9,17 @@
     <meta name="application-name" content="Resume of Ashish Jha" />
     <title>Ashish Jha | Backend Engineer</title>
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
-    <!-- Font Awesome icons -->
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
-        type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-    <!-- External CSS & Scripts -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- External Services -->
+    <script defer
+        src="https://www.google.com/recaptcha/api.js?render=6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-"></script>
+
+    <!-- Core Theme (Bootstrap, Typography, Azure Palette, Dark Mode Tokens) -->
+    <link rel="stylesheet" href="/src/shared/theme.css" />
+
+    <!-- Resume Page Styles (Sidebar, Sections, Dev & Social Icons) -->
+    <link rel="stylesheet" href="/src/resume/resume.css" />
 </head>
 
 <body id="page-top">
@@ -46,43 +48,48 @@
                 <li class="nav-item"><a class="nav-link" href="https://blog.ashishjha.dev" target="_blank"
                         rel="noopener">Blog</a></li>
             </ul>
+            <div class="d-flex flex-column gap-2 mt-4 pt-3 border-top border-secondary-subtle w-100" id="nav-actions">
+                <button id="theme-toggle" type="button"
+                    class="btn btn-sm d-flex align-items-center justify-content-center gap-2"
+                    aria-label="Toggle dark and light mode">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-label">Dark Mode</span>
+                </button>
+                <a id="resume-download-btn" href="#" target="_blank" rel="noopener"
+                    class="btn btn-resume btn-sm d-flex align-items-center justify-content-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16" aria-hidden="true">
+                        <path
+                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                        <path
+                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                    </svg>
+                    <span>Download Resume</span>
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Page Content -->
     <div class="container-fluid p-0">
-        <!-- About Section -->
+        <!-- About Section (rendered dynamically from data.ts) -->
         <section class="resume-section" id="about">
             <div class="resume-section-content">
                 <h1 class="mb-0">
-                    Ashish
-                    <span class="text-primary">Jha</span>
+                    <span id="about-first-name">Ashish</span>
+                    <span class="text-primary" id="about-last-name">Jha</span>
                 </h1>
-                <div class="subheading mb-5">
+                <div class="subheading mb-5" id="about-location">
                     Bengaluru, Karnataka, India
                 </div>
-                <p class="lead mb-5">Dynamic and results-driven Software Engineer with over 7 years of experience in
-                    backend development across the healthcare, real estate, and media sectors.
-                    Currently working at Nielsen, contributing to the transition and future ownership of a key product,
-                    with a focus on system performance and architectural direction.
-                    <br><br>
-                    Proficient in .NET technologies (ASP.NET Core, .NET 6/8), C#, SQL, and Azure services, I have
-                    consistently delivered scalable backend solutions that optimize performance and reduce operational
-                    overhead. At CareStack, I led initiatives that reduced manual reporting effort by over 95% and
-                    improved message processing efficiency by 60%. My work spans from designing microservices to
-                    building developer tools that streamline deployment and maintenance.
-                    <br><br>
-                    I bring a strong focus on writing reliable, maintainable code and solving complex technical
-                    problems. Passionate about continuous learning and cross-team collaboration, I aim to build
-                    robust systems that drive business outcomes and long-term value.
-                </p>
+                <div class="lead mb-5" id="about-bio"></div>
                 <div class="social-icons" id="about-socials"></div>
             </div>
         </section>
 
         <hr class="m-0" />
 
-        <!-- Experience Section (rendered dynamically from resumeData.ts) -->
+        <!-- Experience Section (rendered dynamically from data.ts) -->
         <section class="resume-section" id="experience">
             <div class="resume-section-content">
                 <h2 class="mb-5">Experience</h2>
@@ -102,7 +109,7 @@
 
         <hr class="m-0" />
 
-        <!-- Education Section (rendered dynamically from resumeData.ts) -->
+        <!-- Education Section (rendered dynamically from data.ts) -->
         <section class="resume-section" id="education">
             <div class="resume-section-content">
                 <h2 class="mb-5">Education</h2>
@@ -112,7 +119,7 @@
 
         <hr class="m-0" />
 
-        <!-- Skills Section (rendered dynamically from resumeData.ts) -->
+        <!-- Skills Section (rendered dynamically from data.ts) -->
         <section class="resume-section" id="skills">
             <div class="resume-section-content">
                 <h2 class="mb-5">Skills</h2>
@@ -123,7 +130,7 @@
 
         <hr class="m-0" />
 
-        <!-- Interests Section (rendered dynamically from resumeData.ts) -->
+        <!-- Interests Section (rendered dynamically from data.ts) -->
         <section class="resume-section" id="interests">
             <div class="resume-section-content">
                 <h2 class="mb-5">Interests</h2>
@@ -172,7 +179,8 @@
                         <div class="col-md-6">
                             <div class="contact-info p-4">
                                 <h4>Other Ways to Contact Me</h4>
-                                <p><strong>Address:</strong> Bengaluru, Karnataka, India</p>
+                                <p><strong>Address:</strong> <span id="contact-location">Bengaluru, Karnataka,
+                                        India</span></p>
                                 <p><strong>Follow Me:</strong></p>
                                 <div class="social-icons" id="contact-socials"></div>
                             </div>
@@ -183,7 +191,7 @@
         </section>
     </div>
 
-    <!-- Main TypeScript entry point (bundles Bootstrap CSS & JS + theme) -->
+    <!-- Application Logic (Deferred, non-blocking at bottom of page) -->
     <script type="module" src="/src/resume/main.ts"></script>
 </body>
 

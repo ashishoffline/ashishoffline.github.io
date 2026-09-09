@@ -1,30 +1,73 @@
 /* ==========================================================================
-   Ashish Jha - Custom Resume & Portfolio Styles
-   Overriding and extending Bootstrap 5
+   Core Design System & Theme Foundation
+   Shared across all tools & subpages (Resume, CC Rewards, Calculators)
    ========================================================================== */
 
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+@import "@fontsource/plus-jakarta-sans/800.css";
+
 :root {
-  --bs-primary: #bd5d38;
-  --bs-primary-rgb: 189, 93, 56;
-  --bs-link-color: #bd5d38;
-  --bs-link-hover-color: #974a2d;
-  --bs-body-font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+  accent-color: #2563eb;
+
+  /* Modern Azure / Tech Palette */
+  --bs-primary: #2563eb;
+  --bs-primary-rgb: 37, 99, 235;
+  --bs-primary-hover: #1d4ed8;
+  --bs-link-color: #2563eb;
+  --bs-link-hover-color: #1d4ed8;
+
+  /* Typography */
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Theme Canvas & Surfaces (Light) */
+  --surface-bg: #ffffff;
+  --canvas-bg: #f8fafc;
+  --border-color: #e2e8f0;
+  --sidebar-bg: #0f172a;
+  --text-heading: #0f172a;
+  --text-muted: #64748b;
+  --card-bg: #ffffff;
 }
 
-/* Base Body & Typography */
+/* Dark Mode Overrides */
+[data-bs-theme="dark"],
+[data-theme="dark"] {
+  color-scheme: dark;
+  accent-color: #3b82f6;
+
+  --bs-primary: #3b82f6;
+  --bs-primary-rgb: 59, 130, 246;
+  --bs-primary-hover: #60a5fa;
+  --bs-link-color: #60a5fa;
+  --bs-link-hover-color: #93c5fd;
+
+  --surface-bg: #0f172a;
+  --canvas-bg: #0b0f19;
+  --border-color: #1e293b;
+  --sidebar-bg: #070a11;
+  --text-heading: #f8fafc;
+  --text-muted: #94a3b8;
+  --card-bg: #131b2e;
+}
+
+/* Base Body & Layout */
 body {
-  font-family: var(--bs-body-font-family);
-  padding-top: 3.375rem;
-  color: #6c757d;
+  font-family: var(--font-body);
+  background-color: var(--canvas-bg);
+  color: var(--text-muted);
+  line-height: 1.65;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-@media (min-width: 992px) {
-  body {
-    padding-top: 0;
-    padding-left: 17rem;
-  }
-}
-
+/* Modern Typography */
 h1,
 .h1,
 h2,
@@ -37,252 +80,190 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
-  text-transform: uppercase;
-  color: #343a40;
-  line-height: 1.2;
+  color: var(--text-heading);
+  text-transform: none;
+  letter-spacing: -0.02em;
 }
 
 h1,
 .h1 {
-  font-size: calc(1.725rem + 5.7vw);
-  line-height: 1;
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1.15;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
 
   h1,
   .h1 {
-    font-size: 6rem;
+    font-size: 3.75rem;
   }
 }
 
 h2,
 .h2 {
-  font-size: calc(1.475rem + 2.7vw);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
 }
 
-@media (min-width: 1200px) {
-
-  h2,
-  .h2 {
-    font-size: 3.5rem;
-  }
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 2.5rem;
+  height: 3px;
+  background-color: var(--bs-primary);
+  border-radius: 2px;
 }
 
 h3,
 .h3 {
-  font-size: calc(1.325rem + 0.9vw);
-}
-
-@media (min-width: 1200px) {
-
-  h3,
-  .h3 {
-    font-size: 2rem;
-  }
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 p.lead {
   font-size: 1.15rem;
   font-weight: 400;
+  line-height: 1.75;
+  color: var(--text-muted);
 }
 
-.subheading {
-  font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  text-transform: uppercase;
+hr {
+  border-color: var(--border-color);
+  opacity: 0.5;
+}
+
+/* Modern Card Styling */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color) !important;
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+[data-bs-theme="dark"] .card:hover {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Badges */
+.badge.bg-primary {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+  color: var(--bs-primary) !important;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+}
+
+[data-bs-theme="dark"] .badge.bg-primary {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: #93c5fd !important;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.badge.bg-secondary {
+  background-color: var(--canvas-bg) !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border-color);
   font-weight: 500;
-  font-size: 1.5rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
 }
 
-/* Primary Color Utilities & Component Overrides */
-.bg-primary {
-  background-color: #bd5d38 !important;
-}
-
-.text-primary {
-  color: #bd5d38 !important;
-}
-
-a {
-  color: #bd5d38;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #974a2d;
-  text-decoration: underline;
-}
-
+/* Buttons */
 .btn-primary {
-  background-color: #bd5d38;
-  border-color: #bd5d38;
-  color: #fff;
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s ease;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
-  background-color: #974a2d;
-  border-color: #974a2d;
-  color: #fff;
+.btn-primary:hover {
+  background-color: var(--bs-primary-hover);
+  border-color: var(--bs-primary-hover);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .btn-outline-primary {
-  color: #bd5d38;
-  border-color: #bd5d38;
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  font-weight: 500;
+  border-radius: 0.5rem;
 }
 
-.btn-outline-primary:hover,
-.btn-outline-primary:focus,
-.btn-outline-primary:active {
-  background-color: #bd5d38;
-  border-color: #bd5d38;
-  color: #fff;
+.btn-outline-primary:hover {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #ffffff;
 }
 
-/* Navigation (#sideNav) */
-#sideNav {
-  padding-left: 1rem;
-  padding-right: 1rem;
+/* Theme Toggle Button */
+#theme-toggle {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  border-radius: 9999px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-#sideNav .navbar-nav .nav-item .nav-link {
-  font-weight: 800;
-  letter-spacing: 0.05rem;
-  text-transform: uppercase;
+#theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
 }
 
-#sideNav .navbar-toggler:focus {
-  outline-color: #d48a6e;
-}
+/* ==========================================================================
+   OS Preference Fallback (Instant zero-flash dark mode before JS executes)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) {
+    color-scheme: dark;
+    accent-color: #3b82f6;
 
-@media (min-width: 992px) {
-  #sideNav {
-    padding-left: 0;
-    padding-right: 0;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    width: 17rem;
-    height: 100vh;
+    --bs-primary: #3b82f6;
+    --bs-primary-rgb: 59, 130, 246;
+    --bs-primary-hover: #60a5fa;
+    --bs-link-color: #60a5fa;
+    --bs-link-hover-color: #93c5fd;
+
+    --surface-bg: #0f172a;
+    --canvas-bg: #0b0f19;
+    --border-color: #1e293b;
+    --sidebar-bg: #070a11;
+    --text-heading: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-bg: #131b2e;
   }
 
-  #sideNav .navbar-brand {
-    display: flex;
-    margin: auto auto 0;
-    padding: 0.5rem;
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .card:hover {
+    border-color: rgba(59, 130, 246, 0.4) !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
   }
 
-  #sideNav .navbar-brand .img-profile {
-    max-width: 10rem;
-    max-height: 10rem;
-    border: 0.5rem solid rgba(255, 255, 255, 0.2);
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .badge.bg-primary {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: #93c5fd !important;
+    border-color: rgba(59, 130, 246, 0.3);
   }
-
-  #sideNav .navbar-collapse {
-    display: flex;
-    align-items: flex-start;
-    flex-grow: 0;
-    width: 100%;
-    margin-bottom: auto;
-  }
-
-  #sideNav .navbar-collapse .navbar-nav {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  #sideNav .navbar-collapse .navbar-nav .nav-item {
-    display: block;
-  }
-
-  #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
-    display: block;
-  }
-}
-
-/* Section Styling */
-section.resume-section {
-  display: flex;
-  align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  max-width: 75rem;
-}
-
-section.resume-section .resume-section-content {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  section.resume-section {
-    min-height: 100vh;
-  }
-}
-
-@media (min-width: 992px) {
-  section.resume-section {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-}
-
-/* Skill / Dev Icons */
-.dev-icons {
-  font-size: 3rem;
-}
-
-.dev-icons i,
-.devicon-svg {
-  height: 3rem;
-  width: auto;
-  vertical-align: middle;
-  display: inline-block;
-}
-
-/* Social Icons */
-.social-icons {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-icons .social-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 3rem;
-  width: 3rem;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  color: inherit;
-}
-
-.social-icons .social-icon img.social-svg {
-  height: 2rem;
-  width: 2rem;
-  display: block;
-}
-
-.social-icons .social-icon:hover {
-  transform: scale(1.1);
-}
-
-/* Contact Info Box */
-.contact-info {
-  background-color: var(--bs-gray-100);
-  border-radius: var(--bs-border-radius);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#contactForm .form-group {
-  margin-bottom: 1rem;
 }

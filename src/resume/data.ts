@@ -1,57 +1,58 @@
-import { ExperienceItem, EducationItem, SkillCategory, SocialLink, ProjectItem } from './types';
+import { ExperienceItem, EducationItem, SkillCategory, ProjectItem, PersonalInfo } from './types';
 
-export const personalInfo = {
+export const personalInfo: PersonalInfo = {
     firstName: 'Ashish',
     lastName: 'Jha',
     location: 'Bengaluru, Karnataka, India',
     leadBio: `Dynamic and results-driven Software Engineer with over 7 years of experience in backend development across the healthcare, real estate, and media sectors. Currently working at Nielsen, contributing to the transition and future ownership of a key product, with a focus on system performance and architectural direction.`,
     secondaryBio: `Proficient in .NET technologies (ASP.NET Core, .NET 6/8), C#, SQL, and Azure services, I have consistently delivered scalable backend solutions that optimize performance and reduce operational overhead. At CareStack, I led initiatives that reduced manual reporting effort by over 95% and improved message processing efficiency by 60%. My work spans from designing microservices to building developer tools that streamline deployment and maintenance.`,
     closingBio: `I bring a strong focus on writing reliable, maintainable code and solving complex technical problems. Passionate about continuous learning and cross-team collaboration, I aim to build robust systems that drive business outcomes and long-term value.`,
+    resumeUrl: 'https://drive.google.com/', // Replace with your direct Google Drive resume link
     socials: [
         {
             platform: 'LinkedIn',
             url: 'https://linkedin.ashishjha.dev',
-            iconSvg: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg',
+            iconClass: 'devicon-linkedin-plain colored',
             alt: 'LinkedIn'
         },
         {
             platform: 'GitHub',
             url: 'https://github.ashishjha.dev',
-            iconSvg: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg',
+            iconClass: 'devicon-github-original colored',
             alt: 'GitHub'
         },
         {
             platform: 'Twitter / X',
             url: 'https://x.ashishjha.dev',
-            iconSvg: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg',
+            iconClass: 'devicon-twitter-original colored',
             alt: 'Twitter'
         }
-    ] as SocialLink[]
+    ]
 };
 
 export const experiences: ExperienceItem[] = [
     {
         role: 'Member of Technical Staff III',
         company: 'Nielsen',
-        period: 'Jan 2025 – Present',
+        period: 'Jan 2025 - Present',
         description: 'Currently onboarding as Technical Lead for a critical product transition to my team, taking ownership post-handover and guiding its future development and technical direction.'
     },
     {
         role: 'Staff Engineer',
         company: 'CareStack',
-        period: 'Jan 2022 – Jan 2025',
+        period: 'Jan 2022 - Jan 2025',
         description: 'Delivered scalable backend solutions focused on automation, performance, and architectural enhancements. Reduced manual reporting time by over 95% through background job and Power BI integration. Improved message processing efficiency by 60% through optimized database interactions. Built a custom database schema migration tool for systems unsupported by Flyway. Led development of strategic features in collaboration with the company’s largest investor, and mentored junior developers while contributing to engineering standards across teams.'
     },
     {
         role: 'Software Development Engineer II',
         company: 'Xome',
-        period: 'Oct 2020 – Jan 2022',
+        period: 'Oct 2020 - Jan 2022',
         description: 'Enhanced the next-gen Xome Auction Platform by optimizing bidding workflows and improving key page load times by 50% using Razor Pages. Led development of a Travel Management System used internally by the company, replacing a third-party service and reducing operational costs by up to 50%.'
     },
     {
         role: 'Software Developer',
         company: 'Cognizant',
-        period: 'Mar 2018 – Oct 2020',
+        period: 'Mar 2018 - Oct 2020',
         description: 'Modernized a legacy CICS-based system by introducing a microservices-based backend, enabling real-time record processing. Upgraded project dependency handling by migrating to PackageReference and integrated JFrog Artifactory into Azure DevOps for efficient NuGet package management across teams.'
     }
 ];
@@ -70,21 +71,21 @@ export const skillCategories: SkillCategory[] = [
     {
         category: 'Programming Languages & Frameworks',
         skills: [
-            { name: 'C#', iconClass: 'devicon-csharp-plain colored' },
-            { name: 'JavaScript', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
+            { name: '.NET', iconSvg: '/assets/icons/dotnet.svg' },
+            { name: 'C#', iconSvg: '/assets/icons/csharp.svg' },
+            { name: 'NestJS', iconClass: 'devicon-nestjs-original colored' },
+            { name: 'JavaScript', iconClass: 'devicon-javascript-plain colored' },
             { name: 'TypeScript', iconClass: 'devicon-typescript-plain colored' },
-            { name: '.NET', imgSrc: 'https://raw.githubusercontent.com/dotnet/brand/refs/heads/main/logo/dotnet-logo.svg' },
-            { name: '.NET Core', iconClass: 'devicon-dotnetcore-plain colored' }
         ]
     },
     {
         category: 'Databases & Data Technologies',
         skills: [
             { name: 'Azure SQL Database', iconClass: 'devicon-azuresqldatabase-plain colored' },
-            { name: 'MS SQL Server', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original-wordmark.svg' },
-            { name: 'MySQL', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg' },
-            { name: 'PostgreSQL', iconClass: 'devicon-postgresql-plain-wordmark colored' },
-            { name: 'Redis', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original-wordmark.svg' }
+            { name: 'MS SQL Server', iconClass: 'devicon-microsoftsqlserver-plain colored' },
+            { name: 'MySQL', iconClass: 'devicon-mysql-original colored' },
+            { name: 'PostgreSQL', iconClass: 'devicon-postgresql-plain colored' },
+            { name: 'Redis', iconClass: 'devicon-redis-plain colored' }
         ]
     },
     {
@@ -92,29 +93,29 @@ export const skillCategories: SkillCategory[] = [
         skills: [
             { name: 'Azure', iconClass: 'devicon-azure-plain colored' },
             { name: 'Azure DevOps', iconClass: 'devicon-azuredevops-plain colored' },
-            { name: 'Docker', iconClass: 'devicon-docker-plain-wordmark colored' },
+            { name: 'Docker', iconClass: 'devicon-docker-plain colored' },
             { name: 'Kubernetes', iconClass: 'devicon-kubernetes-plain colored' },
-            { name: 'ArgoCD', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/argocd/argocd-original.svg' },
+            { name: 'ArgoCD', iconClass: 'devicon-argocd-plain colored' },
             { name: 'Helm', iconClass: 'devicon-helm-original colored' },
             { name: 'Git', iconClass: 'devicon-git-plain colored' },
-            { name: 'GitHub', iconClass: 'devicon-github-original-wordmark colored' },
-            { name: 'GitLab', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gitlab/gitlab-original-wordmark.svg' },
-            { name: 'Bitbucket', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bitbucket/bitbucket-original-wordmark.svg' },
+            { name: 'GitHub', iconClass: 'devicon-github-original colored' },
+            { name: 'GitLab', iconClass: 'devicon-gitlab-plain colored' },
+            { name: 'Bitbucket', iconClass: 'devicon-bitbucket-original colored' },
             { name: 'NuGet', iconClass: 'devicon-nuget-original colored' },
-            { name: 'Grafana', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original-wordmark.svg' },
+            { name: 'Grafana', iconClass: 'devicon-grafana-plain colored' },
             { name: 'Splunk', iconClass: 'devicon-splunk-original-wordmark colored' },
-            { name: 'SonarQube', iconClass: 'devicon-sonarqube-plain-wordmark colored' }
+            { name: 'SonarQube', iconClass: 'devicon-sonarqube-original colored' }
         ]
     },
     {
         category: 'Tools & Miscellaneous',
         skills: [
-            { name: 'Visual Studio', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-original.svg' },
-            { name: 'VS Code', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg' },
-            { name: 'YAML', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/yaml/yaml-original.svg' },
-            { name: 'JSON', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/json/json-original.svg' },
-            { name: 'Jira', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original-wordmark.svg' },
-            { name: 'Apache Kafka', iconClass: 'devicon-apachekafka-original-wordmark colored' }
+            { name: 'Visual Studio', iconClass: 'devicon-visualstudio-plain colored' },
+            { name: 'VS Code', iconClass: 'devicon-vscode-plain colored' },
+            { name: 'YAML', iconClass: 'devicon-yaml-plain colored' },
+            { name: 'JSON', iconClass: 'devicon-json-plain colored' },
+            { name: 'Jira', iconClass: 'devicon-jira-plain colored' },
+            { name: 'Apache Kafka', iconClass: 'devicon-apachekafka-original colored' }
         ]
     }
 ];

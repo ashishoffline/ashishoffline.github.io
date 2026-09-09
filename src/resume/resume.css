@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Resume Page Styles (ashishjha.dev / index.html)
+   Sidebar layout, sections, dev icons, resume action button
+   ========================================================================== */
+
+@import "devicon/devicon.min.css";
+
+/* Desktop Sidebar Offset */
+body {
+  padding-top: 3.5rem;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 0;
+    padding-left: 17rem;
+  }
+}
+
+/* Subheading */
+.subheading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bs-primary);
+}
+
+/* Navigation Sidebar (#sideNav) */
+#sideNav {
+  background-color: var(--sidebar-bg) !important;
+  border-right: 1px solid var(--border-color);
+  padding: 1rem;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#sideNav .navbar-nav .nav-item .nav-link {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-transform: none;
+  transition: all 0.2s ease;
+}
+
+#sideNav .navbar-nav .nav-item .nav-link:hover,
+#sideNav .navbar-nav .nav-item .nav-link.active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+#sideNav .navbar-nav .nav-item .nav-link.active {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+@media (min-width: 992px) {
+  #sideNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    height: 100vh;
+    padding: 2rem 1.25rem;
+    text-align: center;
+  }
+
+  #sideNav .navbar-brand {
+    display: flex;
+    margin: 0 auto 1.5rem;
+    padding: 0;
+  }
+
+  #sideNav .navbar-brand .img-profile {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  #sideNav .navbar-brand .img-profile:hover {
+    transform: scale(1.03);
+    border-color: var(--bs-primary);
+  }
+
+  #sideNav .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+  #sideNav .navbar-collapse .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.25rem;
+  }
+}
+
+/* Sections */
+section.resume-section {
+  display: flex;
+  align-items: center;
+  padding: 4rem 1.5rem;
+  max-width: 68rem;
+}
+
+@media (min-width: 992px) {
+  section.resume-section {
+    padding: 5rem 3.5rem;
+    min-height: 100vh;
+  }
+}
+
+section.resume-section .resume-section-content {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Skills Section Icons (.dev-icons)
+   ========================================================================== */
+.dev-icons {
+  font-size: 2.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.dev-icons li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+}
+
+.dev-icons i {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.dev-icons .dev-icon-svg {
+  display: inline-block;
+  height: 2.45rem;
+  width: 2.45rem;
+  object-fit: contain;
+  border-radius: 0.35rem;
+  transition: transform 0.2s ease;
+}
+
+/* Subtle lift on hover */
+.dev-icons li:hover i,
+.dev-icons li:hover .dev-icon-svg {
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   Social Link Icons (.social-icons)
+   Free-standing, brand-colored icons for About and Contact sections
+   ========================================================================== */
+.social-icons {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  min-height: 2.5rem;
+}
+
+.social-icons .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Subtle lift on hover */
+.social-icons .social-icon:hover {
+  transform: translateY(-3px);
+}
+
+.social-icons .social-icon i {
+  font-size: 2.25rem;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+/* ==========================================================================
+   Dark Mode Contrast Overrides for Naturally Dark/Black Brand Icons
+   In light mode, Devicon colored classes render brand colors (black/charcoal).
+   In dark mode, these flip to crisp white/light so they stay visible.
+   ========================================================================== */
+
+/* Social Icons (GitHub, Twitter / X) */
+[data-bs-theme="dark"] .social-icons .social-icon i.devicon-github-original.colored,
+[data-bs-theme="dark"] .social-icons .social-icon i.devicon-twitter-original.colored {
+  color: #f8fafc !important;
+}
+
+/* Skill Icons: Flip naturally dark/black brand icons to white in dark mode */
+[data-bs-theme="dark"] .dev-icons i.devicon-splunk-original-wordmark.colored,
+[data-bs-theme="dark"] .dev-icons i.devicon-apachekafka-original.colored,
+[data-bs-theme="dark"] .dev-icons i.devicon-github-original.colored {
+  color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .dev-icons i.devicon-nuget-original.colored {
+  color: #38bdf8 !important;
+}
+
+[data-bs-theme="dark"] .dev-icons i.devicon-json-plain.colored {
+  color: #f8fafc !important;
+}
+
+/* Contact Info Box */
+.contact-info {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.75rem;
+}
+
+/* Download Resume Button */
+.btn-resume {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-resume:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+/* OS Preference Fallback for Resume-Specific Elements */
+@media (prefers-color-scheme: dark) {
+
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .social-icons .social-icon i.devicon-github-original.colored,
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .social-icons .social-icon i.devicon-twitter-original.colored {
+    color: #f8fafc !important;
+  }
+
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .dev-icons i.devicon-splunk-original-wordmark.colored,
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .dev-icons i.devicon-apachekafka-original.colored,
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .dev-icons i.devicon-github-original.colored {
+    color: #ffffff !important;
+  }
+
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .dev-icons i.devicon-nuget-original.colored {
+    color: #38bdf8 !important;
+  }
+
+  :root:not([data-bs-theme="light"]):not([data-theme="light"]) .dev-icons i.devicon-json-plain.colored {
+    color: #f8fafc !important;
+  }
+}

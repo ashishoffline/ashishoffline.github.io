@@ -1,10 +1,32 @@
 import { personalInfo, experiences, educations, skillCategories, workflows, interests, projects } from './data';
 
 export function renderResume(): void {
+    // 0. Render About Section Details
+    const firstNameEl = document.getElementById('about-first-name');
+    if (firstNameEl) firstNameEl.textContent = personalInfo.firstName;
+
+    const lastNameEl = document.getElementById('about-last-name');
+    if (lastNameEl) lastNameEl.textContent = personalInfo.lastName;
+
+    const locationEl = document.getElementById('about-location');
+    if (locationEl) locationEl.textContent = personalInfo.location;
+
+    const contactLocationEl = document.getElementById('contact-location');
+    if (contactLocationEl) contactLocationEl.textContent = personalInfo.location;
+
+    const aboutBio = document.getElementById('about-bio');
+    if (aboutBio) {
+        aboutBio.innerHTML = `
+            <p class="mb-4">${personalInfo.leadBio}</p>
+            <p class="mb-4">${personalInfo.secondaryBio}</p>
+            <p class="mb-0">${personalInfo.closingBio}</p>
+        `;
+    }
+
     // 1. Render Social Icons (in About section and Contact section)
     const renderSocialsHtml = () => personalInfo.socials.map(s => `
-        <a class="social-icon" href="${s.url}" target="_blank" rel="noopener">
-            <img src="${s.iconSvg}" alt="${s.alt}" class="social-svg" title="${s.alt}">
+        <a class="social-icon" href="${s.url}" target="_blank" rel="noopener" aria-label="${s.alt}">
+            <i class="${s.iconClass}" title="${s.alt}"></i>
         </a>
     `).join('');
 
@@ -58,7 +80,7 @@ export function renderResume(): void {
                 ${category.skills.map(skill => `
                     <li class="list-inline-item">
                         ${skill.iconClass ? `<i class="${skill.iconClass}" title="${skill.name}"></i>` : ''}
-                        ${skill.imgSrc ? `<img src="${skill.imgSrc}" alt="${skill.name}" class="devicon-svg" title="${skill.name}" />` : ''}
+                        ${skill.iconSvg ? `<img src="${skill.iconSvg}" alt="${skill.name}" class="dev-icon-svg" title="${skill.name}" />` : ''}
                     </li>
                 `).join('')}
             </ul>
@@ -69,10 +91,10 @@ export function renderResume(): void {
     const projectsList = document.getElementById('projects-list');
     if (projectsList) {
         projectsList.innerHTML = projects.map(proj => `
-            <div class="card mb-4 shadow-sm border-0 bg-light">
+            <div class="card mb-4 shadow-sm">
                 <div class="card-body p-4">
                     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-2 gap-2">
-                        <h3 class="card-title mb-0 fs-4 text-dark">${proj.title}</h3>
+                        <h3 class="card-title mb-0 fs-4">${proj.title}</h3>
                         ${proj.badge ? `<span class="badge bg-primary text-uppercase">${proj.badge}</span>` : ''}
                     </div>
                     <p class="card-text text-muted mb-3">${proj.description}</p>
@@ -87,14 +109,25 @@ export function renderResume(): void {
         `).join('');
     }
 
+    // Populate Download Resume button link if present
+    const resumeBtn = document.getElementById('resume-download-btn') as HTMLAnchorElement | null;
+    if (resumeBtn && personalInfo.resumeUrl) {
+        resumeBtn.href = personalInfo.resumeUrl;
+    }
+
     // 6. Render Workflow Section
     const workflowList = document.getElementById('workflow-list');
     if (workflowList) {
         workflowList.innerHTML = `
             <div class="subheading mb-3">Workflow</div>
-            <ul class="fa-ul mb-0">
+            <ul class="list-unstyled mb-0">
                 ${workflows.map(item => `
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>${item}</li>
+                    <li class="d-flex align-items-center gap-2 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        <span>${item}</span>
+                    </li>
                 `).join('')}
             </ul>
         `;

@@ -7,6 +7,19 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@fontsource/inter':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource/plus-jakarta-sans':
+        specifier: ^5.3.0
+        version: 5.3.0
+      bootstrap:
+        specifier: ^5.3.3
+        version: 5.3.8(@popperjs/core@2.11.8)
+      devicon:
+        specifier: ^2.17.0
+        version: 2.17.0
     devDependencies:
       '@types/bootstrap':
         specifier: ^5.2.10
@@ -14,9 +27,6 @@ importers:
       '@types/node':
         specifier: ^22.13.5
         version: 22.20.1
-      bootstrap:
-        specifier: ^5.3.3
-        version: 5.3.8(@popperjs/core@2.11.8)
       typescript:
         specifier: ^5.7.3
         version: 5.9.3
@@ -182,6 +192,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@fontsource/inter@5.3.0':
+    resolution: {integrity: sha512-RofMylZmjlJEfELXeNHFWBRcSs75rGU/6bV2S2jfnvv/3rPXPGe0LgUJTklcHZ9lM4OZmAVFhcJPnACfb91A3g==}
+
+  '@fontsource/plus-jakarta-sans@5.3.0':
+    resolution: {integrity: sha512-9WRw3G74Ve4cyPApAZSXLPY5DiLOZXDn7Q7dIBjFBpA0Pj56ljDItEdy2UUajjJxRuTg2HkMLO5C3K2nAQORWg==}
+
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
     engines: {node: ^22.20 || ^24.12 || >=25}
@@ -343,6 +359,9 @@ packages:
     resolution: {integrity: sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==}
     peerDependencies:
       '@popperjs/core': ^2.11.8
+
+  devicon@2.17.0:
+    resolution: {integrity: sha512-2nKUdjobJlmRSaCHa50PGsVq0VDURnq9gVzQoJggsM/NKN0tLhC/Uq2zmy2pH36Q/1q3gvYwp/GjTgv/R0Ysbg==}
 
   esbuild@0.25.12:
     resolution: {integrity: sha512-bbPBYYrtZbkt6Os6FiTLCTFxvq4tt3JKall1vRwshA3fdVztsLAatFaZobhkBC8/BrPetoa0oksYoKXoG4ryJg==}
@@ -520,6 +539,10 @@ snapshots:
   '@esbuild/win32-x64@0.25.12':
     optional: true
 
+  '@fontsource/inter@5.3.0': {}
+
+  '@fontsource/plus-jakarta-sans@5.3.0': {}
+
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     optional: true
 
@@ -613,6 +636,8 @@ snapshots:
   bootstrap@5.3.8(@popperjs/core@2.11.8):
     dependencies:
       '@popperjs/core': 2.11.8
+
+  devicon@2.17.0: {}
 
   esbuild@0.25.12:
     optionalDependencies:

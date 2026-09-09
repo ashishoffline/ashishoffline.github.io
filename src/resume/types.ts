@@ -1,8 +1,19 @@
 export interface SocialLink {
     platform: string;
     url: string;
-    iconSvg: string;
+    iconClass: string;
     alt: string;
+}
+
+export interface PersonalInfo {
+    firstName: string;
+    lastName: string;
+    location: string;
+    leadBio: string;
+    secondaryBio: string;
+    closingBio: string;
+    socials: SocialLink[];
+    resumeUrl?: string;
 }
 
 export interface ExperienceItem {
@@ -23,7 +34,7 @@ export interface EducationItem {
 export interface SkillItem {
     name: string;
     iconClass?: string;
-    imgSrc?: string;
+    iconSvg?: string;
 }
 
 export interface SkillCategory {

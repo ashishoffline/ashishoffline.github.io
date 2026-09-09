@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Credit Card Rewards Optimizer | Ashish Jha</title>
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Stylesheet (Render-blocking, loaded before HTML content) -->
+    <link rel="stylesheet" href="/src/shared/theme.css" />
 </head>
 
-<body class="bg-light p-4">
+<body class="p-4">
     <div class="container" style="max-width: 800px;">
-        <nav class="mb-4">
+        <nav class="d-flex justify-content-between align-items-center mb-4">
             <a href="/" class="btn btn-outline-primary btn-sm">&larr; Back to Resume</a>
+            <button id="theme-toggle" type="button" class="btn btn-sm d-flex align-items-center gap-2"
+                aria-label="Toggle dark and light mode">
+                <span id="theme-icon">🌙</span>
+                <span id="theme-label">Dark Mode</span>
+            </button>
         </nav>
         <header class="mb-4 text-center">
             <h1 class="display-5 fw-bold text-primary">Credit Card Rewards Optimizer</h1>
@@ -19,7 +27,7 @@
                 transaction.</p>
         </header>
 
-        <div class="card shadow-sm p-4 text-center">
+        <div class="card p-4 text-center">
             <h4 class="mb-3">Rule Engine Sandbox</h4>
             <p class="text-secondary">This subpage is set up under the same repository and deployed at
                 <code>ashishjha.dev/cc-rewards/</code>.
@@ -29,6 +37,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Application Logic (Deferred, non-blocking at bottom of page) -->
     <script type="module" src="/src/cc-rewards/main.ts"></script>
 </body>
 
