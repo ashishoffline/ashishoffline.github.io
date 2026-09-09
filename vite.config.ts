@@ -1,5 +1,4 @@
-import { defineConfig } from 'vite';
-import { defineConfig, PluginOption } from 'vite';
+import { defineConfig, type PluginOption } from 'vite';
 import { resolve } from 'path';
 import fs from 'fs';
 
