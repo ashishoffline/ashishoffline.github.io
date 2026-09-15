@@ -1,16 +1,14 @@
 import { initTheme } from '../shared/theme';
+import { renderApp } from './render';
+import './cc-rewards.css';
 
 // Initialize Light/Dark theme manager
 initTheme();
 
-// Credit Card Rewards Optimizer Entry Point
-console.log('Credit Card Rewards Optimizer initialized');
-
-const app = document.getElementById('app');
-if (app) {
-    app.innerHTML = `
-        <strong>Rule Engine Online!</strong>
-        <p class="mb-0 mt-2 text-muted">Ready for merchant, category, and card reward rule configurations.</p>
-    `;
+// Mount Credit Card Rewards Optimizer Application
+const appContainer = document.getElementById('app');
+if (appContainer) {
+  renderApp(appContainer);
+} else {
+  console.error('App container #app not found in cc-rewards/index.html');
 }
-

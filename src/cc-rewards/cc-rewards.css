@@ -1,0 +1,288 @@
+/* Scoped styles for Credit Card Rewards Optimizer & Benefit Hub */
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+:root {
+  --cc-accent-gold: #f59e0b;
+  --cc-accent-gold-bg: rgba(245, 158, 11, 0.1);
+  --cc-accent-gold-border: rgba(245, 158, 11, 0.4);
+  --cc-success-bg: rgba(16, 185, 129, 0.1);
+  --cc-success-border: rgba(16, 185, 129, 0.3);
+  --cc-danger-bg: rgba(239, 68, 68, 0.1);
+  --cc-danger-border: rgba(239, 68, 68, 0.3);
+  --cc-card-bg: var(--bs-body-bg);
+  --cc-card-border: var(--bs-border-color);
+}
+
+/* Nav Tabs */
+.cc-nav-pills {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.35rem;
+}
+
+.cc-nav-pills .nav-link {
+  white-space: nowrap;
+  color: var(--bs-body-color);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.cc-nav-pills .nav-link:hover {
+  background-color: var(--bs-tertiary-bg);
+  color: var(--bs-primary);
+}
+
+.cc-nav-pills .nav-link.active {
+  background-color: var(--bs-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+}
+
+/* Input Card & Quick Amount Buttons */
+.cc-input-card {
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.cc-input-card .form-select,
+.cc-input-card .form-control,
+.cc-input-card .input-group-text {
+  font-size: 0.875rem;
+  padding: 0.45rem 0.75rem;
+}
+
+#merchant-select {
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+#merchant-select optgroup {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--bs-secondary-color);
+}
+
+#merchant-select option {
+  font-size: 0.825rem;
+  padding: 0.35rem 0.5rem;
+}
+
+#wallet-btn-label {
+  font-size: 0.875rem;
+}
+
+.quick-amt-btn {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.375rem;
+}
+
+/* Global Active Wallet Bar */
+.cc-wallet-bar-wrapper {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .cc-wallet-bar-wrapper {
+    width: auto;
+    min-width: 360px;
+    max-width: 440px;
+  }
+}
+
+#wallet-dropdown-btn {
+  min-height: 40px;
+}
+
+#wallet-btn-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Custom Multi-Select Dropdown */
+.custom-multiselect .dropdown-menu {
+  z-index: 1050;
+  border-radius: 0.625rem;
+  border: 1px solid var(--bs-border-color);
+  background-color: var(--bs-body-bg);
+  width: 460px;
+  max-width: calc(100vw - 2rem);
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.custom-multiselect .dropdown-menu.dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
+.custom-multiselect .dropdown-item {
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.custom-multiselect .dropdown-item:hover {
+  background-color: var(--bs-tertiary-bg);
+}
+
+.custom-multiselect .dropdown-item.active-item {
+  background-color: var(--bs-primary-bg-subtle);
+  color: var(--bs-primary-text-emphasis);
+}
+
+.custom-multiselect .card-item-name {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+  .custom-multiselect .dropdown-menu {
+    width: calc(100vw - 2rem);
+  }
+
+  .custom-multiselect .card-item-name {
+    white-space: normal;
+    word-break: break-word;
+  }
+}
+
+.custom-multiselect .form-select {
+  cursor: pointer;
+}
+
+/* Ranked Cards */
+.result-card {
+  position: relative;
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.result-card.is-best {
+  border: 2px solid var(--cc-accent-gold);
+  background-color: var(--cc-accent-gold-bg);
+}
+
+.best-badge {
+  position: absolute;
+  top: -12px;
+  right: 18px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.75rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.4);
+}
+
+.return-amount {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.rate-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+/* Benefits Directory Cards */
+.benefit-card {
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.benefit-card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* Condition pill badges */
+.badge-unconditional {
+  background-color: var(--cc-success-bg);
+  color: #10b981;
+  border: 1px solid var(--cc-success-border);
+  font-weight: 600;
+}
+
+.badge-conditional {
+  background-color: var(--cc-accent-gold-bg);
+  color: #d97706;
+  border: 1px solid var(--cc-accent-gold-border);
+  font-weight: 600;
+}
+
+.badge-excluded {
+  background-color: var(--cc-danger-bg);
+  color: #ef4444;
+  border: 1px solid var(--cc-danger-border);
+  font-weight: 600;
+}
+
+/* Mobile & Small Screen Responsiveness */
+@media (max-width: 576px) {
+  .return-amount {
+    font-size: 1.4rem;
+  }
+
+  .cc-input-card {
+    padding: 1rem !important;
+  }
+
+  .result-card {
+    padding: 1rem;
+  }
+
+  .best-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    right: 12px;
+    top: -10px;
+  }
+
+  .wallet-box {
+    padding: 0.75rem;
+  }
+}
