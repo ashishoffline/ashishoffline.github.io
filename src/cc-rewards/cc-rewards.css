@@ -13,13 +13,6 @@ body {
 :root {
   --cc-accent-gold: #f59e0b;
   --cc-accent-gold-bg: rgba(245, 158, 11, 0.1);
-  --cc-accent-gold-border: rgba(245, 158, 11, 0.4);
-  --cc-success-bg: rgba(16, 185, 129, 0.1);
-  --cc-success-border: rgba(16, 185, 129, 0.3);
-  --cc-danger-bg: rgba(239, 68, 68, 0.1);
-  --cc-danger-border: rgba(239, 68, 68, 0.3);
-  --cc-card-bg: var(--bs-body-bg);
-  --cc-card-border: var(--bs-border-color);
 }
 
 /* Nav Tabs */
@@ -49,6 +42,29 @@ body {
   background-color: var(--bs-primary);
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+}
+
+@media (max-width: 767.98px) {
+  .cc-nav-pills {
+    width: 100%;
+    padding-bottom: 0;
+    overflow-x: visible;
+  }
+
+  .cc-nav-pills .nav-link {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .cc-nav-pills .nav-link {
+    font-size: 0.72rem;
+    padding: 0.45rem 0.1rem;
+  }
 }
 
 /* Input Card & Quick Amount Buttons */
@@ -239,28 +255,6 @@ body {
   padding-top: 1rem;
 }
 
-/* Condition pill badges */
-.badge-unconditional {
-  background-color: var(--cc-success-bg);
-  color: #10b981;
-  border: 1px solid var(--cc-success-border);
-  font-weight: 600;
-}
-
-.badge-conditional {
-  background-color: var(--cc-accent-gold-bg);
-  color: #d97706;
-  border: 1px solid var(--cc-accent-gold-border);
-  font-weight: 600;
-}
-
-.badge-excluded {
-  background-color: var(--cc-danger-bg);
-  color: #ef4444;
-  border: 1px solid var(--cc-danger-border);
-  font-weight: 600;
-}
-
 /* Mobile & Small Screen Responsiveness */
 @media (max-width: 576px) {
   .return-amount {
@@ -280,9 +274,5 @@ body {
     padding: 0.15rem 0.5rem;
     right: 12px;
     top: -10px;
-  }
-
-  .wallet-box {
-    padding: 0.75rem;
   }
 }

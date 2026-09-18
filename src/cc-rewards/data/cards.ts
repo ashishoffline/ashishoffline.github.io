@@ -10,7 +10,7 @@ import {
 export const CREDIT_CARDS: CreditCard[] = [
   {
     id: 'bobcard-scapia',
-    name: 'Scapia Bank of Baroda Credit Card',
+    name: 'Scapia',
     bank: BankType.BOBCARD,
     network: NetworkType.VISA,
     badge: 'Zero Forex & Travel',
@@ -65,7 +65,7 @@ export const CREDIT_CARDS: CreditCard[] = [
   },
   {
     id: 'hsbc-live-plus',
-    name: 'HSBC Live+ Credit Card',
+    name: 'Live+',
     bank: BankType.HSBC,
     network: NetworkType.VISA,
     badge: '10% Dining, Grocery & Shopping',
@@ -181,7 +181,7 @@ export const CREDIT_CARDS: CreditCard[] = [
   },
   {
     id: 'indusind-tiger',
-    name: 'IndusInd Bank Tiger Credit Card',
+    name: 'Tiger',
     bank: BankType.INDUSIND,
     network: NetworkType.VISA,
     badge: '1.5% Forex & Up to 6X Rewards',

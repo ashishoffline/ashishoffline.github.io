@@ -19,7 +19,7 @@ export function renderApp(container: HTMLElement) {
     if (activeCardIds.length === CREDIT_CARDS.length) return `All Cards (${CREDIT_CARDS.length})`;
     if (activeCardIds.length === 1) {
       const card = CREDIT_CARDS.find((c) => c.id === activeCardIds[0]);
-      return card ? card.name : '1 Card Selected';
+      return card ? `${card.bank} ${card.name}` : '1 Card Selected';
     }
     return `${activeCardIds.length} of ${CREDIT_CARDS.length} Cards Selected`;
   }
@@ -68,9 +68,10 @@ export function renderApp(container: HTMLElement) {
                       value="${card.id}"
                       ${isChecked ? 'checked' : ''}
                     />
+                    <span class="badge bg-primary-subtle text-primary border">${card.bank}</span>
                     <span class="small fw-semibold card-item-name">${card.name}</span>
                   </div>
-                  <span class="badge bg-body-tertiary text-body border small flex-shrink-0 ms-auto">${card.bank}</span>
+                  <span class="badge bg-body-tertiary text-body border small flex-shrink-0 ms-auto">${card.network}</span>
                 </label>
               `;
     }).join('')}
@@ -85,25 +86,25 @@ export function renderApp(container: HTMLElement) {
       <!-- Navigation Tabs & Global Wallet Bar -->
       <div class="d-flex flex-column flex-lg-row justify-content-between align-items-stretch align-items-lg-center mb-4 gap-3">
         <!-- Navigation Tabs -->
-        <ul class="nav nav-pills cc-nav-pills mb-0 gap-2" role="tablist">
+        <ul class="nav nav-pills nav-fill cc-nav-pills mb-0 gap-1 gap-md-2" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link ${activeTab === 'rewards' ? 'active' : ''}" id="tab-btn-rewards" type="button" role="tab">
-              🎯 Rewards Optimizer
+              🎯 Rewards<span class="d-none d-md-inline"> Optimizer</span>
             </button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link ${activeTab === 'movies' ? 'active' : ''}" id="tab-btn-movies" type="button" role="tab">
-              🎬 Movie Offers
+              🎬 Movies<span class="d-none d-md-inline"> Offers</span>
             </button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link ${activeTab === 'lounges' ? 'active' : ''}" id="tab-btn-lounges" type="button" role="tab">
-              ✈️ Lounge Access
+              ✈️ Lounges<span class="d-none d-md-inline"> Access</span>
             </button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link ${activeTab === 'golf' ? 'active' : ''}" id="tab-btn-golf" type="button" role="tab">
-              🏌️ Golf Privileges
+              🏌️ Golf<span class="d-none d-md-inline"> Privileges</span>
             </button>
           </li>
         </ul>
@@ -253,10 +254,11 @@ export function renderApp(container: HTMLElement) {
               <div class="result-card h-100 ${isBest ? 'is-best' : ''}">
                 ${isBest ? `<div class="best-badge">★ Best Recommendation</div>` : ''}
 
-                <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                <!-- Top Row: Card Info (Left) + Return Amount (Right) -->
+                <div class="row align-items-start g-2 mb-2">
                   <!-- Left: Card Info -->
-                  <div style="max-width: 65%;">
-                    <div class="d-flex align-items-center gap-2 mb-1">
+                  <div class="col-7 col-sm-8">
+                    <div class="d-flex align-items-center gap-1 gap-sm-2 mb-1 flex-wrap">
                       <span class="badge bg-secondary-subtle text-secondary-emphasis border">
                         #${index + 1}
                       </span>
@@ -266,33 +268,29 @@ export function renderApp(container: HTMLElement) {
                       <span class="badge bg-body-tertiary text-body border">
                         ${card.network}
                       </span>
-                      ${card.badge ? `<span class="badge bg-dark-subtle text-body border small">${card.badge}</span>` : ''}
+                      ${card.badge ? `<span class="badge bg-dark-subtle text-body border small d-none d-sm-inline-block">${card.badge}</span>` : ''}
                     </div>
 
-                    <h5 class="fw-bold mb-1">
+                    <h5 class="fw-bold mb-0">
                       ${card.cardPageUrl ? `<a href="${card.cardPageUrl}" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-reset">${card.name} ↗</a>` : card.name}
                     </h5>
-
-                    <!-- Notes & Disclaimers -->
-                    <div class="mt-2 small text-muted">
-                      ${res.notes.map((note) => `<div class="mb-1">&bull; ${note}</div>`).join('')}
-                    </div>
+                    ${card.badge ? `<div class="d-sm-none mt-1"><span class="badge bg-dark-subtle text-body border small">${card.badge}</span></div>` : ''}
                   </div>
 
                   <!-- Right: Reward Rate & Value -->
-                  <div class="text-end">
-                    <div class="text-muted small text-uppercase fw-semibold mb-1">
-                      ${isForex ? 'Forex Markup Fee' : 'Net Reward Return'}
+                  <div class="col-5 col-sm-4 text-end">
+                    <div class="text-muted small text-uppercase fw-semibold mb-1 text-nowrap">
+                      ${isForex ? 'Forex Fee' : 'Net Return'}
                     </div>
                     ${isForex && res.forexMarkupFeeInr !== undefined
               ? `
                         <div class="return-amount ${card.forexMarkupPercentage === 0 ? 'text-success' : 'text-danger'}">
-                          ${card.forexMarkupPercentage === 0 ? '₹0 Fee (Zero Forex)' : `+₹${res.forexMarkupFeeInr.toLocaleString('en-IN')}`}
+                          ${card.forexMarkupPercentage === 0 ? '₹0' : `+₹${res.forexMarkupFeeInr.toLocaleString('en-IN')}`}
                         </div>
                         <div class="mt-1">
                           ${card.forexMarkupPercentage === 0
-                ? `<span class="badge bg-success-subtle text-success border fw-bold rate-badge">0% Forex Markup</span>`
-                : `<span class="badge bg-warning-subtle text-warning-emphasis border fw-bold rate-badge">${card.forexMarkupPercentage}% + GST Markup</span>`
+                ? `<span class="badge bg-success-subtle text-success border fw-bold rate-badge">Zero Forex</span>`
+                : `<span class="badge bg-warning-subtle text-warning-emphasis border fw-bold rate-badge">${card.forexMarkupPercentage}% + GST</span>`
               }
                         </div>
                       `
@@ -302,18 +300,28 @@ export function renderApp(container: HTMLElement) {
                         </div>
                         <div class="mt-1">
                           ${res.isExcluded
-                ? `<span class="badge badge-excluded">0% Excluded</span>`
+                ? `<span class="badge bg-danger-subtle text-danger border border-danger-subtle fw-bold rate-badge">0% Excluded</span>`
                 : `<span class="badge bg-success-subtle text-success border fw-bold rate-badge">${res.effectiveRatePercentage}% Return</span>`
               }
                         </div>
                       `
             }
                     ${!res.isExcluded && res.pointsEarned > 0 && card.pointConversionInr !== 1.0
-              ? `<div class="text-muted small mt-1">~${res.pointsEarned.toLocaleString('en-IN')} pts (1 pt = ₹${card.pointConversionInr})</div>`
+              ? `<div class="text-muted small mt-1 text-nowrap">~${res.pointsEarned.toLocaleString('en-IN')} pts</div>`
               : ''
             }
                   </div>
                 </div>
+
+                <!-- Notes & Disclaimers: Full-width spanning the entire card -->
+                ${res.notes.length > 0
+              ? `
+                  <div class="w-100 lh-base pt-2 mt-2 border-top small text-muted">
+                    ${res.notes.map((note) => `<div class="mb-1">&bull; ${note}</div>`).join('')}
+                  </div>
+                `
+              : ''
+            }
               </div>
             </div>
           `;
@@ -331,7 +339,7 @@ export function renderApp(container: HTMLElement) {
     return `
       <div class="mb-4">
         <div class="text-center mb-4">
-          <h3 class="fw-bold">🎬 Credit Card Movie Offers & Vouchers</h3>
+          <h3 class="fw-bold">🎬 Movie Offers & Vouchers</h3>
           <p class="text-muted">Directly compare BOGO tickets, discounts, and quotas across your active wallet cards in one place.</p>
         </div>
 
@@ -498,7 +506,7 @@ export function renderApp(container: HTMLElement) {
                       <span class="badge bg-primary-subtle text-primary border me-1">${card.bank}</span>
                       <span class="badge bg-body-tertiary text-body border">${card.network}</span>
                     </div>
-                    <span class="badge ${isUnconditional ? 'badge-unconditional' : 'badge-conditional'}">
+                    <span class="badge ${isUnconditional ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-warning-subtle text-warning-emphasis border border-warning-subtle'} fw-semibold">
                       ${isUnconditional ? '✓ No Spend Required' : '⚠️ Spend Condition'}
                     </span>
                   </div>
@@ -612,7 +620,7 @@ export function renderApp(container: HTMLElement) {
                       <span class="badge bg-primary-subtle text-primary border me-1">${card.bank}</span>
                       <span class="badge bg-body-tertiary text-body border">${card.network}</span>
                     </div>
-                    <span class="badge ${isUnconditional ? 'badge-unconditional' : 'badge-conditional'}">
+                    <span class="badge ${isUnconditional ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-warning-subtle text-warning-emphasis border border-warning-subtle'} fw-semibold">
                       ${isUnconditional ? '✓ No Spend Required' : '⚠️ Spend Condition'}
                     </span>
                   </div>
