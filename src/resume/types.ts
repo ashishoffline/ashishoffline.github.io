@@ -43,11 +43,13 @@ export interface SkillCategory {
 }
 
 export interface ContactFormData {
+    site: string;
     name: string;
-    replyTo: string;
-    subject: string;
+    email: string;
+    subject?: string;
     message: string;
-    recaptchaToken: string;
+    turnstileToken?: string;
+    hp?: string;
 }
 
 export interface ProjectItem {

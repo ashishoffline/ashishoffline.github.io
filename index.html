@@ -11,9 +11,8 @@
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- External Services -->
-    <script defer
-        src="https://www.google.com/recaptcha/api.js?render=6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-"></script>
+    <!-- Bot Protection: Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
     <!-- Core Theme (Bootstrap, Typography, Azure Palette, Dark Mode Tokens) -->
     <link rel="stylesheet" href="/src/shared/theme.css" />
@@ -149,6 +148,7 @@
                         <!-- Left Column: Contact Form -->
                         <div class="col-md-6">
                             <form id="contactForm" class="needs-validation" novalidate>
+                                <input type="text" name="hp" style="display:none;" tabindex="-1" autocomplete="off">
                                 <div class="form-group mb-3">
                                     <label for="name">Name:</label>
                                     <input type="text" class="form-control" id="name" name="name" required>
@@ -169,6 +169,9 @@
                                     <textarea class="form-control" id="message" name="message" rows="4"
                                         required></textarea>
                                     <div class="invalid-feedback">Please enter a message.</div>
+                                </div>
+                                <div id="turnstile-widget" class="cf-turnstile mb-3"
+                                    data-sitekey="0x4AAAAAAFHeIOF189ZPk-c9" data-theme="auto" data-action="contact">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Send</button>
                                 <div id="formErrorMessage" class="mt-3 alert alert-danger d-none" role="alert"></div>

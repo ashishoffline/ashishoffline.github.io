@@ -57,54 +57,64 @@ function init(): void {
                 return;
             }
 
-            if (typeof grecaptcha === 'undefined') {
-                formErrorMessage.textContent = 'reCAPTCHA failed to load. Please refresh and try again.';
+            const turnstileInput = contactForm.querySelector('input[name="cf-turnstile-response"]') as HTMLInputElement | null;
+            const turnstileToken = turnstileInput?.value || (window as any).turnstile?.getResponse();
+
+            if (!turnstileToken) {
+                formErrorMessage.textContent = 'Please complete the verification check before submitting.';
                 formErrorMessage.classList.remove('d-none', 'alert-success');
                 formErrorMessage.classList.add('alert', 'alert-danger');
                 return;
             }
 
-            // Execute reCAPTCHA v3
-            grecaptcha.ready(() => {
-                grecaptcha
-                    .execute('6LcX7WwqAAAAAHTkqZTeAaX3UDgHaDy7bfNiaOo-', { action: 'submit' })
-                    .then((token: string) => {
-                        const formData: ContactFormData = {
-                            name: (document.getElementById('name') as HTMLInputElement).value,
-                            replyTo: (document.getElementById('replyTo') as HTMLInputElement).value,
-                            subject: (document.getElementById('subject') as HTMLInputElement).value,
-                            message: (document.getElementById('message') as HTMLTextAreaElement).value,
-                            recaptchaToken: token,
-                        };
+            const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+            }
 
-                        return fetch(
-                            'https://ashishjha-dev.azurewebsites.net/api/ContactMeEmail?code=jRH9RI56M0kHjxm05jVoX7DsqML6JRgEShFEpSKyAkJ_AzFuwGmx1g==',
-                            {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(formData),
-                            }
-                        );
-                    })
-                    .then((response: Response) => {
-                        if (response.ok) {
-                            formErrorMessage.textContent = 'Thanks! Your message has been sent successfully.';
-                            formErrorMessage.classList.remove('d-none', 'alert-danger');
-                            formErrorMessage.classList.add('alert', 'alert-success');
-                            contactForm.reset();
-                            contactForm.classList.remove('was-validated');
-                        } else {
-                            throw new Error('Something went wrong. Please try again later.');
-                        }
-                    })
-                    .catch((error: Error) => {
-                        formErrorMessage.textContent = error.message;
-                        formErrorMessage.classList.remove('d-none', 'alert-success');
-                        formErrorMessage.classList.add('alert', 'alert-danger');
-                    });
-            });
+            const hpInput = contactForm.querySelector('input[name="hp"]') as HTMLInputElement | null;
+            const formData: ContactFormData = {
+                site: 'ashishjha-dev',
+                name: (document.getElementById('name') as HTMLInputElement).value.trim(),
+                email: (document.getElementById('replyTo') as HTMLInputElement).value.trim(),
+                subject: (document.getElementById('subject') as HTMLInputElement).value.trim(),
+                message: (document.getElementById('message') as HTMLTextAreaElement).value.trim(),
+                turnstileToken,
+                hp: hpInput?.value || '',
+            };
+
+            fetch('https://contact-api.ashishjha.dev', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response: Response) => {
+                    if (response.ok) {
+                        formErrorMessage.textContent = 'Thanks! Your message has been sent successfully.';
+                        formErrorMessage.classList.remove('d-none', 'alert-danger');
+                        formErrorMessage.classList.add('alert', 'alert-success');
+                        contactForm.reset();
+                        contactForm.classList.remove('was-validated');
+                        (window as any).turnstile?.reset('#turnstile-widget');
+                    } else {
+                        (window as any).turnstile?.reset('#turnstile-widget');
+                        throw new Error('Something went wrong. Please try again later.');
+                    }
+                })
+                .catch((error: Error) => {
+                    formErrorMessage.textContent = error.message;
+                    formErrorMessage.classList.remove('d-none', 'alert-success');
+                    formErrorMessage.classList.add('alert', 'alert-danger');
+                })
+                .finally(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Send';
+                    }
+                });
         });
     }
 }
