@@ -43,6 +43,27 @@ function init(): void {
     const formErrorMessage = document.getElementById('formErrorMessage');
 
     if (contactForm && formErrorMessage) {
+        const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+        // Turnstile lifecycle callbacks to enable/disable submit button
+        (window as any).onTurnstileSuccess = (_token: string) => {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+            }
+        };
+
+        (window as any).onTurnstileExpired = () => {
+            if (submitBtn) {
+                submitBtn.disabled = true;
+            }
+        };
+
+        (window as any).onTurnstileError = () => {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+            }
+        };
+
         contactForm.addEventListener('submit', (event: SubmitEvent) => {
             event.preventDefault();
             event.stopPropagation();
@@ -67,7 +88,6 @@ function init(): void {
                 return;
             }
 
-            const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Sending...';
@@ -111,8 +131,9 @@ function init(): void {
                 })
                 .finally(() => {
                     if (submitBtn) {
-                        submitBtn.disabled = false;
                         submitBtn.textContent = 'Send';
+                        const currentToken = (contactForm.querySelector('input[name="cf-turnstile-response"]') as HTMLInputElement | null)?.value;
+                        submitBtn.disabled = !currentToken;
                     }
                 });
         });
